@@ -4,7 +4,7 @@
   "description": "State transferring utility for Angular Universal",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ngx-universal/state-transfer.git"
+    "url": "https://github.com/sapierens/state-transfer.git"
   },
   "keywords": [
     "state",

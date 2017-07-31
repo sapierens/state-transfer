@@ -27,15 +27,14 @@ export class ServerStateTransferService extends StateTransferService {
         data: {}
       });
 
-      const html: any = Array.from(document.children).find((child: any) => child.name === 'html');
-      const head = Array.from(html.children).find((child: any) => child.name === 'head');
+	  const body = document.body;
 
-      if (!head)
-        throw new Error('<head> not found in the document');
+      if (!body)
+        throw new Error('<body> not found in the document');
 
       const script = renderer.createElement('script');
       renderer.setValue(script, `window['${this.stateId}'] = ${state}`);
-      renderer.appendChild(head, script);
+      renderer.appendChild(body, script);
     } catch (e) {
       console.error(e);
     }

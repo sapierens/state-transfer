@@ -5,6 +5,9 @@ import { PlatformState } from '@angular/platform-server';
 // module
 import { StateTransferService } from './state-transfer.service';
 
+// utils
+import { jsonStringEscape } from './utils/json-string-tools';
+
 export const STATE_ID = new InjectionToken<string>('STATE_ID');
 export const DEFAULT_STATE_ID = 'STATE';
 
@@ -20,6 +23,7 @@ export class ServerStateTransferService extends StateTransferService {
     try {
       const document: any = this.platformState.getDocument();
       const state = JSON.stringify(this.toJson());
+      const escapedState = jsonStringEscape(state);
       const renderer = this.rendererFactory.createRenderer(document, {
         id: '-1',
         encapsulation: ViewEncapsulation.None,
@@ -27,13 +31,13 @@ export class ServerStateTransferService extends StateTransferService {
         data: {}
       });
 
-	  const body = document.body;
+      const body = document.body;
 
       if (!body)
         throw new Error('<body> not found in the document');
 
       const script = renderer.createElement('script');
-      renderer.setValue(script, `window['${this.stateId}'] = ${state}`);
+      renderer.setValue(script, `window['${this.stateId}'] = '${escapedState}'`);
       renderer.appendChild(body, script);
     } catch (e) {
       console.error(e);

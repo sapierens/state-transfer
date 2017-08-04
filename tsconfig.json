@@ -19,7 +19,8 @@
     "index.ts",
     "src/http-transfer.service.ts",
     "src/server-state-transfer.service.ts",
-    "src/state-transfer.service.ts"
+    "src/state-transfer.service.ts",
+    "src/utils/json-string-tools.ts"
   ],
   "exclude": [
     "node_modules"

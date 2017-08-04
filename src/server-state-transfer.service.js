@@ -2,6 +2,7 @@ import * as tslib_1 from "tslib";
 import { Inject, Injectable, InjectionToken, RendererFactory2, ViewEncapsulation } from '@angular/core';
 import { PlatformState } from '@angular/platform-server';
 import { StateTransferService } from './state-transfer.service';
+import { jsonStringEscape } from './utils/json-string-tools';
 export var STATE_ID = new InjectionToken('STATE_ID');
 export var DEFAULT_STATE_ID = 'STATE';
 var ServerStateTransferService = (function (_super) {
@@ -17,6 +18,7 @@ var ServerStateTransferService = (function (_super) {
         try {
             var document_1 = this.platformState.getDocument();
             var state = JSON.stringify(this.toJson());
+            var escapedState = jsonStringEscape(state);
             var renderer = this.rendererFactory.createRenderer(document_1, {
                 id: '-1',
                 encapsulation: ViewEncapsulation.None,
@@ -27,7 +29,7 @@ var ServerStateTransferService = (function (_super) {
             if (!body)
                 throw new Error('<body> not found in the document');
             var script = renderer.createElement('script');
-            renderer.setValue(script, "window['" + this.stateId + "'] = " + state);
+            renderer.setValue(script, "window['" + this.stateId + "'] = '" + escapedState + "'");
             renderer.appendChild(body, script);
         }
         catch (e) {

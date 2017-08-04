@@ -2,12 +2,15 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { DEFAULT_STATE_ID, ServerStateTransferService, STATE_ID } from './src/server-state-transfer.service';
 import { HttpTransferService } from './src/http-transfer.service';
 import { StateTransferService } from './src/state-transfer.service';
+import { jsonStringUnescape } from './src/utils/json-string-tools';
 export * from './src/server-state-transfer.service';
 export * from './src/state-transfer.service';
 export * from './src/http-transfer.service';
 export function stateTransferFactory(stateId) {
     var stateTransfer = new StateTransferService();
-    stateTransfer.initialize(window[stateId] || {});
+    var escapedState = window[stateId] || '';
+    var state = JSON.parse(jsonStringUnescape(escapedState));
+    stateTransfer.initialize(state);
     return stateTransfer;
 }
 var HttpTransferModule = (function () {

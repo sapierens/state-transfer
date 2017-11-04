@@ -1,0 +1,20 @@
+{
+  "@ngx-universal": {
+    "state-transfer": {
+      "angularVersion": 4,
+      "bundle": {
+        "globals": {
+          "@angular/http": "ng.http",
+          "@angular/platform-server": "ng.platformServer",
+          "rxjs/Observable": "Rx.Observable"
+        },
+        "external": [
+          "rxjs/add/observable/fromPromise",
+          "rxjs/add/operator/do",
+          "rxjs/add/operator/map"
+        ]
+      },
+      "runTests": false
+    }
+  }
+}

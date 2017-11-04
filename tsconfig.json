@@ -1,34 +1,18 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
     "importHelpers": true,
-    "lib": [ "es2015", "dom" ],
-    "declaration": true,
-    "typeRoots": [
-      "node_modules/@types"
+    "lib": [
+      "es2017",
+      "dom"
     ]
   },
-  "files": [
-    "index.ts",
-    "src/http-transfer.service.ts",
-    "src/server-state-transfer.service.ts",
-    "src/state-transfer.service.ts",
-    "src/utils/json-string-tools.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
-  },
-  "compileOnSave": false,
-  "buildOnSave": false
+  "include": [
+    "tools/**/*.ts",
+    "packages/**/*.ts"
+  ]
 }

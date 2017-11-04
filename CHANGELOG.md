@@ -1,18 +1,26 @@
 # Change Log
-All notable changes to this project will be documented in this file.
 
-## v0.4.0-beta.1 - 2017-04-28
-### Breaking change
-- `@nglibs/universal-transfer-state` has been renamed to `@ngx-universal/state-transfer` (closes [#5](https://github.com/ngx-universal/state-transfer/issues/5))
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### Added
-- Added import/export STATE_ID (closes [#6](https://github.com/ngx-universal/state-transfer/issues/6))
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/fulls1z3/ngx-universal/compare/v4.0.0...v4.0.1) (2017-09-07)
 
-### Fixed
-- Resolved add `yarn.lock` to npmignore (closes [#4](https://github.com/ngx-universal/state-transfer/issues/4))
-- Resolved cannot read property '0' of undefined (closes [#2](https://github.com/ngx-universal/state-transfer/issues/2))
 
-### Changed
-- Updated README.md
-- Updated deps, ignorers
-- Some refactoring
+### Bug Fixes
+
+* fix moduleId for AoT compilation ([#30](https://github.com/fulls1z3/ngx-universal/issues/30)) ([dfd62ba](https://github.com/fulls1z3/ngx-universal/commit/dfd62ba)), closes [#29](https://github.com/fulls1z3/ngx-universal/issues/29)
+
+
+
+<a name="4.0.0"></a>
+# 4.0.0 (2017-09-06)
+
+
+### Bug Fixes
+
+* **state-transfer:** cannot read property '0' of undefined ([#2](https://github.com/fulls1z3/ngx-universal/issues/2)) ([46a6ba5](https://github.com/fulls1z3/ngx-universal/commit/46a6ba5))
+
+
+### Features
+
+* **state-transfer:** export STATE_ID ([#6](https://github.com/fulls1z3/ngx-universal/issues/6)) ([349ddf7](https://github.com/fulls1z3/ngx-universal/commit/349ddf7))

@@ -6,9 +6,6 @@ import { DEFAULT_STATE_ID, ServerStateTransferService, STATE_ID } from './src/se
 import { HttpTransferService } from './src/http-transfer.service';
 import { StateTransferService } from './src/state-transfer.service';
 
-// utils
-import { jsonStringUnescape } from './src/utils/json-string-tools';
-
 export * from './src/server-state-transfer.service';
 export * from './src/state-transfer.service';
 export * from './src/http-transfer.service';
@@ -16,10 +13,7 @@ export * from './src/http-transfer.service';
 // for AoT compilation
 export function stateTransferFactory(stateId: string): StateTransferService {
   const stateTransfer = new StateTransferService();
-  const escapedState = window[stateId] || '';
-  const state = JSON.parse(jsonStringUnescape(escapedState));
-
-  stateTransfer.initialize(state);
+  stateTransfer.initialize(window[stateId] || {});
 
   return stateTransfer;
 }

@@ -46,8 +46,17 @@ var jsonStringEscapeMap = {
     '\\': '\\\\',
     '\'': '&#39;'
 };
+var jsonStringUnescapeMap = {
+    '&lt;': '<',
+    '&gt;': '>',
+    '&amp;': '&',
+    '&#39;': '\''
+};
 function jsonStringEscape(str) {
     return str.replace(/[&\<\>\\']/g, function (e) { return jsonStringEscapeMap[e]; });
+}
+function jsonStringUnescape(str) {
+    return str.replace(/(&amp;)|(&lt;)|(&gt;)|(&#39;)/g, function (e) { return jsonStringUnescapeMap[e]; });
 }
 
 var STATE_ID = new _angular_core.InjectionToken('STATE_ID');
@@ -205,7 +214,9 @@ var HttpTransferService = (function () {
 
 function stateTransferFactory(stateId) {
     var stateTransfer = new StateTransferService();
-    stateTransfer.initialize(window[stateId] || {});
+    var escapedState = window[stateId] || '';
+    var state = JSON.parse(jsonStringUnescape(escapedState));
+    stateTransfer.initialize(state);
     return stateTransfer;
 }
 var HttpTransferModule = (function () {

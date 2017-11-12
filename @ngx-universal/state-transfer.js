@@ -45,8 +45,17 @@ const jsonStringEscapeMap = {
     '\\': '\\\\',
     '\'': '&#39;'
 };
+const jsonStringUnescapeMap = {
+    '&lt;': '<',
+    '&gt;': '>',
+    '&amp;': '&',
+    '&#39;': '\''
+};
 function jsonStringEscape(str) {
     return str.replace(/[&\<\>\\']/g, e => jsonStringEscapeMap[e]);
+}
+function jsonStringUnescape(str) {
+    return str.replace(/(&amp;)|(&lt;)|(&gt;)|(&#39;)/g, e => jsonStringUnescapeMap[e]);
 }
 
 const STATE_ID = new InjectionToken('STATE_ID');
@@ -190,7 +199,9 @@ HttpTransferService.ctorParameters = () => [
 
 function stateTransferFactory(stateId) {
     const stateTransfer = new StateTransferService();
-    stateTransfer.initialize(window[stateId] || {});
+    const escapedState = window[stateId] || '';
+    const state = JSON.parse(jsonStringUnescape(escapedState));
+    stateTransfer.initialize(state);
     return stateTransfer;
 }
 class HttpTransferModule {
